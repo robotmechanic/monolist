@@ -13,8 +13,13 @@ class User < ActiveRecord::Base
   has_many :followed_users, through: :followed_relationships, source: :follower
 
   has_many :ownerships , foreign_key: "user_id", dependent: :destroy
-  has_many :items ,through: :ownerships
+  has_many :items , through: :ownerships
 
+  has_many :wants, class_name: "Want", foreign_key: "user_id", dependent: :destroy
+  has_many :want_items , through: :wants, source: :item
+  
+  has_many :haves, class_name: "Have", foreign_key: "user_id", dependent: :destroy
+  has_many :have_items , through: :haves, source: :item
 
   # 他のユーザーをフォローする
   def follow(other_user)
@@ -31,20 +36,26 @@ class User < ActiveRecord::Base
 
   ## TODO 実装
   def have(item)
+    haves.create(item.id)
   end
 
   def unhave(item)
+    item = haves.find_by(item.id)
   end
 
   def have?(item)
+    have_items.include?(item.id)
   end
 
   def want(item)
+    wants.create(item.id)
   end
 
   def unwant(item)
+    item = wants.find_by(item.id)
   end
 
   def want?(item)
+    want_items.include?(item.id)
   end
 end
