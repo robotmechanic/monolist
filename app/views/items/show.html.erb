@@ -32,7 +32,7 @@
         <div class="side-box-body">
           <% @item.have_users.each do |user| %>
             <div class="icon">
-              <%= link_to gravatar_for(user, size: 20), user_path(user.id) %>
+              <%= link_to gravatar_for(user, size: 24), user_path(user.id) %>
             </div>
           <% end %>
         </div>
@@ -43,7 +43,7 @@
           <% # TODO Wantしたユーザー一覧 %>
           <% @item.want_users.each do |user| %>
             <div class="icon">
-              <%= link_to gravatar_for(user, size: 20), user_path(user.id) %>
+              <%= link_to gravatar_for(user, size: 24), user_path(user.id) %>
             </div>
           <% end %>
         </div>
