@@ -3,7 +3,7 @@
     <%= @item.title %> - monolist
   </title>
   <description>
-    <%= @item.title %> に関する情報です。この商品を欲しい人、持っている人を表示してます。
+    <meta name="description" content=<%=@item.title %>"に関する情報です。この商品を欲しい人、持っている人を表示してます。">
   </description>
 <% end %>
 
@@ -24,29 +24,25 @@
       <div class="title">
         <% #TODO 商品タイトル %>
         <%= @item.title %>
-        仮タイトル
       </div>
       <%= render 'action' , item: @item %>
     </div>
-    <div class="item-single-side">
+      <div class="item-single-side">
       <div class="side-box">
         <h4 class="side-box-title">Haveしたユーザー</h4>
         <div class="side-box-body">
+
           <% @item.have_users.each do |user| %>
-            <div class="icon">
-              <span class="gravatar"><%= link_to gravatar_for(user, size: 24), user_path(user.id) %></span>
-            </div>
+            <%= link_to(gravatar_for(user, size: 24), user_path(user),class:"gravatar", :alt => user.name) %>
           <% end %>
+
         </div>
       </div>
       <div class="side-box">
         <h4 class="side-box-title">Wantしたユーザー</h4>
         <div class="side-box-body">
-          <% # TODO Wantしたユーザー一覧 %>
           <% @item.want_users.each do |user| %>
-            <div class="icon">
-              <span class="gravatar"><%= link_to gravatar_for(user, size: 24), user_path(user.id) %></span>
-            </div>
+            <%= link_to(gravatar_for(user, size: 24), user_path(user),class:"gravatar", :alt => user.name) %>
           <% end %>
         </div>
       </div>
