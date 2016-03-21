@@ -1,0 +1,27 @@
+<% content_for :head do %>
+  <title>Top ranked Have items - monolist</title>
+    Top ranking for Have items
+<% end %>
+<div class ="panel panel-primary">
+      <div class="panel-heading"><h3>Top 10 Have Ranking</h3></div>
+    <div class="panel-body">
+    <table class="table table-striped">
+    <thead>
+    <tr>
+      <th class="col-md-1">Ranking</th>
+      <th class="col-md-2"></th>
+      <th class="col-md-8">Product Name</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <% @have_rankings.each_with_index do |(rank,count), i| %>
+        <tr>
+          <td><h4><%= i + 1 %>位</h4></td>
+          <td><%= image_tag(rank.small_image , alt: rank.title) %></td>
+          <td><%= rank.title %></td>
+        </tr>
+    <% end %>
+  </tbody>
+  </div>
+</table>
